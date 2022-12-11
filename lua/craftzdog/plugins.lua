@@ -23,6 +23,39 @@ packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
+  use {
+    'folke/todo-comments.nvim',
+    config = function()
+      require('todo-comments').setup {
+        signs = true,
+        sign_priority = 8,
+        keywords = {
+          FIX = {
+            icon = " ", -- icon used for the sign, and in search results
+            color = "error", -- can be a hex color, or a named color (see below)
+            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+            -- signs = false, -- configure signs for some keywords individually
+            -- TODO: Do something
+          },
+          TODO = { icon = " ", color = "info" },
+          HACK = { icon = " ", color = "warning" },
+          WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+          PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+          NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+          TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+        },
+        colors = {
+          error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+          warning = { "DiagnosticWarning", "WarningMsg", "#FBBF24" },
+          info = { "DiagnosticInfo", "#00DCF0" },
+          hint = { "DiagnosticHint", "#10B981" },
+          default = { "Identifier", "#7C3AED" },
+          test = { "Identifier", "#FF00FF" }
+        },
+      }
+    end
+  }
+
   use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'L3MON4D3/LuaSnip'
   use {
